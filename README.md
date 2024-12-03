@@ -1,1 +1,1 @@
-# pytest-ui-sel-alllure-gactions
+# pytest-ui-sel-allure-actions
