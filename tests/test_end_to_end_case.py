@@ -2,7 +2,7 @@ from tests.abstract.base_test import BaseTest
 
 SEARCH_TARGET = "Falcon 9"
 
-class TestSearchField(BaseTest):
+class TestEndToEndCase(BaseTest):
     
     def test_register_order_with_min_required_data(self, valid_user_data):
         self.home_page.open()
