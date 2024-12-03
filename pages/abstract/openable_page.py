@@ -9,6 +9,6 @@ class OpenablePage(BasePage):
         return self
         
     def is_opened(self):
-        self.wait.until(EC.url_to_be(self.PAGE_URL))
+        self.wait.until(EC.url_to_be(f"{self.PAGE_URL}/"))
         return self
     

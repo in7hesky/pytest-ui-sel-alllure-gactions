@@ -1,4 +1,7 @@
 import pytest
+import string
+import random
+import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -17,3 +20,16 @@ def driver(request):
     yield driver
     
     driver.quit()
+
+@pytest.fixture(scope="session")
+def valid_user_data():
+    filepath = "data/valid_user_data.json"
+    try:
+        with open(filepath, 'r') as json_file:
+            return json.load(json_file)
+        
+    except FileNotFoundError:
+        pytest.fail(f"JSON file not found at {filepath}")
+        
+    except json.JSONDecodeError:
+        pytest.fail("Invalid JSON format")
