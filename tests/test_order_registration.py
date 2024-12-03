@@ -3,7 +3,7 @@ from pytest_check import check
 
 SEARCH_TARGET = "Falcon 9"
 
-class TestEndToEndCase(BaseTest):
+class TestOrderRegistration(BaseTest):
     
     def test_register_order_with_min_required_data(self, valid_user_data):
         
