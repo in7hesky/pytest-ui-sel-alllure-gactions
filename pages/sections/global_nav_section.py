@@ -1,3 +1,6 @@
+import allure
+
+
 class GlobalNavSection():
     
     def __init__(self, driver):
@@ -7,7 +10,8 @@ class GlobalNavSection():
         self.__go_by_href_keyword("cart")
     
     def __go_by_href_keyword(self, keyword):
-        self.driver.find_element(
-            *("xpath", 
-             f"//ul[@class='nav-menu']//a[contains(@href, '{keyword}')]")) \
-                .click()
+        with allure.step(f"Go to {keyword} page via nav-menu"):
+            self.driver.find_element(
+                *("xpath", 
+                f"//ul[@class='nav-menu']//a[contains(@href, '{keyword}')]")) \
+                    .click()

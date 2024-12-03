@@ -1,10 +1,16 @@
+from logging import critical
 from tests.abstract.base_test import BaseTest
 from pytest_check import check
+import allure
+
 
 SEARCH_TARGET = "Falcon 9"
 
+@allure.feature("Order registration")
 class TestOrderRegistration(BaseTest):
     
+    @allure.title("Register order with min required valid data")
+    @allure.severity("Critical")
     def test_register_order_with_min_required_data(self, valid_user_data):
         
         self.home_page.open()
@@ -15,7 +21,7 @@ class TestOrderRegistration(BaseTest):
         check.is_in(SEARCH_TARGET, 
                     self.search_results_page.get_product_by_index(0).text)
         
-        self.search_results_page.add_product_by_index(0)
+        self.search_results_page.add_product_to_cart_by_index(0)
         
         check.is_true(self.search_results_page.check_minicart_count_equals(1))
         
@@ -35,4 +41,5 @@ class TestOrderRegistration(BaseTest):
         
         check.is_true(self.order_received_page
             .check_success_notification_is_present())
+
         

@@ -1,6 +1,7 @@
 from pages.abstract.openable_page import OpenablePage
 from config.paths import Paths
 from selenium.webdriver.support.ui import Select
+import allure
 
 
 class CheckoutPage(OpenablePage):
@@ -21,15 +22,18 @@ class CheckoutPage(OpenablePage):
     
     SUBMIT_BUTTON_SELECTOR = ("id", "place_order")
     
+    @allure.step("Check cart item exists by name")
     def check_cart_item_by_name_exists(self, name: str):
         for element in self.find_elements(self.CART_ITEM_SELECTOR):
             if name in element.text:
                 return True
         return False
-    
+
+    @allure.step("Check cart items quantity equals target")
     def check_cart_item_quantity_equals(self, target: int):
         return target == len(self.find_elements(self.CART_ITEM_SELECTOR))
     
+    @allure.step("Input required userdata from a dictionary")
     def input_required_userdata(self, userdata: dict[str, str]):
         self.input_firstname(userdata["firstname"])
         self.input_lastname(userdata["lastname"])
@@ -43,27 +47,33 @@ class CheckoutPage(OpenablePage):
     
         return self
     
+    @allure.step("Input firstname")
     def input_firstname(self, input: str):
         self.find_element(self.FIRSTNAME_SELECTOR).send_keys(input)
         return self
-        
+    
+    @allure.step("Input lastname")    
     def input_lastname(self, input: str):
         self.find_element(self.LASTNAME_SELECTOR).send_keys(input)
         return self
-        
+    
+    @allure.step("Input country")    
     def input_country(self, input: str):
         Select(self.find_element(self.COUNTRY_SELECTOR)) \
             .select_by_visible_text(input)
         return self
     
+    @allure.step("Input street")
     def input_street(self, input: str):
         self.find_element(self.STREET_SELECTOR).send_keys(input)
         return self
     
+    @allure.step("Input city")
     def input_city(self, input: str):
         self.find_element(self.CITY_SELECTOR).send_keys(input)
         return self
-        
+    
+    @allure.step("Input state")    
     def input_state(self, input: str):
         state_input_element = self.find_element(self.STATE_SELECTOR)
         
@@ -73,20 +83,23 @@ class CheckoutPage(OpenablePage):
         
         Select(state_input_element).select_by_visible_text(input)
         return self
-        
+    
+    @allure.step("Input ZIP code")    
     def input_ZIP(self, input: str):
         self.find_element(self.ZIP_SELECTOR).send_keys(input)
         return self
-        
+    
+    @allure.step("Input phone")    
     def input_phone(self, input: str):
         self.find_element(self.PHONE_SELECTOR).send_keys(input)
         return self
-        
+    
+    @allure.step("Input email")    
     def input_email(self, input: str):
         self.find_element(self.EMAIL_SELECTOR).send_keys(input)
         return self
     
+    @allure.step("Click submit button")
     def click_submit_button(self):
         self.find_element(self.SUBMIT_BUTTON_SELECTOR).click()
-        return self
-    
+        return self    
