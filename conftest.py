@@ -1,6 +1,6 @@
 import pytest
-import string
-import random
+import allure
+from allure_commons.types import AttachmentType
 import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -33,3 +33,12 @@ def valid_user_data():
         
     except json.JSONDecodeError:
         pytest.fail("Invalid JSON format")
+
+def pytest_exception_interact(node, call, report):
+    driver = node.instance.driver
+
+    allure.attach(
+        body=driver.get_screenshot_as_png(),
+        attachment_type=AttachmentType.PNG,
+        name='Screenshot',
+    )
