@@ -7,6 +7,8 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 
+pytest_plugins = ["fixtures.userdata"]
+
 def pytest_addoption(parser):
     parser.addoption("--browser", 
                      action="store",
@@ -45,19 +47,6 @@ def driver(request, driver_options):
     yield driver
     
     driver.quit()
-
-@pytest.fixture(scope="session")
-def valid_user_data():
-    filepath = "data/valid_user_data.json"
-    try:
-        with open(filepath, 'r') as json_file:
-            return json.load(json_file)
-        
-    except FileNotFoundError:
-        pytest.fail(f"JSON file not found at {filepath}")
-        
-    except json.JSONDecodeError:
-        pytest.fail("Invalid JSON format")
 
 def pytest_exception_interact(node):
     driver = node.instance.driver
