@@ -1,7 +1,6 @@
 import pytest
 import allure
 from allure_commons.types import AttachmentType
-import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions

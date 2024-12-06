@@ -1,19 +1,20 @@
 from tests.abstract.base_test import BaseTest
 import allure
+import pytest
 
-
-SEARCH_TARGET = "Falcon 9"
 
 @allure.feature("Order registration")
 class TestOrderRegistration(BaseTest):
     
     @allure.title("Test registering order with min required valid data E2E")
     @allure.severity("Critical")
-    def test_register_order_with_min_required_data(self, valid_user_data):
+    @pytest.mark.parametrize("search_target", ["Falcon 9", "Saturn V"])
+    def test_register_order_with_min_required_data(
+        self, search_target, valid_user_data):
         
-        self.home_page.open().search_field_input(SEARCH_TARGET)
+        self.home_page.open().search_field_input(search_target)
         
-        assert SEARCH_TARGET in \
+        assert search_target in \
             self.search_results_page.get_product_by_index(0).text
         
         self.search_results_page.add_product_to_cart_by_index(0)
@@ -29,7 +30,7 @@ class TestOrderRegistration(BaseTest):
         
         assert self.checkout_page.check_cart_item_quantity_equals(1)
         assert self.checkout_page \
-            .check_cart_item_by_name_exists(SEARCH_TARGET)
+            .check_cart_item_by_name_exists(search_target)
         
         self.checkout_page.input_required_userdata(valid_user_data) \
             .click_submit_button()
