@@ -1,6 +1,6 @@
 [tool.pytest.ini_options]
 addopts = [
-    "--alluredir", "allure-reports",
-    "--clean-alluredir",
-    "--browser", "chrome"
+    "--alluredir", "allure-results",
+    "--browser", "chrome",
+    "-n", "auto"
 ]
