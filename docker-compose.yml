@@ -1,0 +1,6 @@
+services:
+  regression:
+    build: .
+    volumes:
+      - ./:/framework
+    command: /bin/sh -c "ls -la && pytest --headless -sv --alluredir=allure-results"
