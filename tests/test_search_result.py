@@ -1,15 +1,14 @@
+import pytest
 import allure
 from tests.abstract.base_test import BaseTest
-import pytest
 
 
 SEARCH_TARGET = "Falcon 9"
 
 @allure.feature("Search Query Results")
 class TestSearchResult(BaseTest):
-       
     @pytest.fixture(autouse=True)
-    def search_query(self, setup):
+    def search_query(self):
         self.home_page.open().search_field_input(SEARCH_TARGET)
 
     @allure.title("Test first search result item has target name")

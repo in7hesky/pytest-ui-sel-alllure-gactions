@@ -12,11 +12,11 @@ class BaseTest:
     cart_page: CartPage
     checkout_page: CheckoutPage
     order_received_page: OrderReceivedPage
-    
+
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
         request.cls.driver = driver
-        
+
         request.cls.home_page = HomePage(driver)
         request.cls.search_results_page = SearchResultsPage(driver)
         request.cls.cart_page = CartPage(driver)

@@ -1,15 +1,15 @@
-from pages.abstract.base_page import BasePage
+import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import allure
+from pages.abstract.base_page import BasePage
 
 
 class OrderReceivedPage(BasePage):
-    
+
     SUCCESS_NOTIFICATION_SELECTOR = (
         "class name", "woocommerce-notice--success")
-    
+
     @allure.step("Check success notification is present")
     def check_success_notification_is_present(self):
         try:
@@ -18,5 +18,5 @@ class OrderReceivedPage(BasePage):
                     self.SUCCESS_NOTIFICATION_SELECTOR))
         except TimeoutException:
             return False
-        else:
-            return True
+
+        return True
