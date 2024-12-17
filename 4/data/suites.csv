@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Dec 17 14:25:54 GMT 2024","Tue Dec 17 14:25:54 GMT 2024","119","tests","test_search_result","TestSearchResult","","","Test search results page title equals query prompt",""
+"passed","Tue Dec 17 14:25:49 GMT 2024","Tue Dec 17 14:26:02 GMT 2024","12983","tests","test_order_registration","TestOrderRegistration","","","Test registering order with min required valid data E2E",""
+"passed","Tue Dec 17 14:25:53 GMT 2024","Tue Dec 17 14:25:54 GMT 2024","110","tests","test_search_result","TestSearchResult","","","Test first search result item has target name",""
+"passed","Tue Dec 17 14:25:49 GMT 2024","Tue Dec 17 14:26:02 GMT 2024","12808","tests","test_order_registration","TestOrderRegistration","","","Test registering order with min required valid data E2E",""
